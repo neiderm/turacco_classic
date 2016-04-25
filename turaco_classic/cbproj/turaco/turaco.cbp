@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="turaco" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/turaco" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="../../cbproj" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option parameters="galaganm" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-DTEST_" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/turaco" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-DALLEGTEST" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="`allegro-config --cflags`" />
+			<Add directory="../../src/include" />
+		</Compiler>
+		<Linker>
+			<Add option="`allegro-config --libs`" />
+		</Linker>
+		<Unit filename="../../src/gui/animview.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/gui/bitmaped.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/gui/bmpdisp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/gui/button.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/gui/drivsel.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/gui/guipal.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/gui/sprtplte.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/gui/util.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/include/animate.h" />
+		<Unit filename="../../src/include/animview.h" />
+		<Unit filename="../../src/include/bitmaped.h" />
+		<Unit filename="../../src/include/bmpdisp.h" />
+		<Unit filename="../../src/include/button.h" />
+		<Unit filename="../../src/include/coding.h" />
+		<Unit filename="../../src/include/config.h" />
+		<Unit filename="../../src/include/drivsel.h" />
+		<Unit filename="../../src/include/editmenu.h" />
+		<Unit filename="../../src/include/editmode.h" />
+		<Unit filename="../../src/include/fileio.h" />
+		<Unit filename="../../src/include/font.h" />
+		<Unit filename="../../src/include/gamedesc.h" />
+		<Unit filename="../../src/include/general.h" />
+		<Unit filename="../../src/include/guipal.h" />
+		<Unit filename="../../src/include/help.h" />
+		<Unit filename="../../src/include/iload.h" />
+		<Unit filename="../../src/include/inidriv.h" />
+		<Unit filename="../../src/include/life.h" />
+		<Unit filename="../../src/include/list.h" />
+		<Unit filename="../../src/include/maped.h" />
+		<Unit filename="../../src/include/palette.h" />
+		<Unit filename="../../src/include/snap.h" />
+		<Unit filename="../../src/include/sprite.h" />
+		<Unit filename="../../src/include/sprtplte.h" />
+		<Unit filename="../../src/include/texted.h" />
+		<Unit filename="../../src/include/toolmenu.h" />
+		<Unit filename="../../src/include/util.h" />
+		<Unit filename="../../src/maped/pacman.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/src/animate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/src/coding.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/src/config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/src/dlg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/src/editmenu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/src/editmode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/src/fileio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/src/font.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/src/gamedesc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/src/help.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/src/iload.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/src/inidriv.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/src/life.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/src/list.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/src/main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/src/maped.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/src/palette.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/src/snap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/src/sprite.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/src/texted.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/src/toolmenu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
