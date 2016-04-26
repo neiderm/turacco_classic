@@ -83,7 +83,7 @@
 // it helped me a lot in figuring out the format for the pellets
 
 #include <stdio.h>
-#include <conio.h>
+//#include <conio.h>
 #include <string.h> // for memset()
 #include "allegro.h"
 #if 0

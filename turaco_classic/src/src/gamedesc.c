@@ -70,7 +70,7 @@ void InitialiseGameDesc(void)
    Orientation = 0;
    NumGfxRoms  = 0;
 
-   if(GfxBankExtraInfo) free(GfxBankExtraInfo);
+   if(GfxBankExtraInfo) free(GfxBankExtraInfo); // GN: check this
    GfxBankExtraInfo = NULL;
 
    GameDescription[0] = '\0';

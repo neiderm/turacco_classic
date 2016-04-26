@@ -37,6 +37,8 @@
 #include "life.h"
 #include "animate.h"
 
+#define  SCANCODE_TO_KEY scancode_to_name // GN:
+
 BITMAP *current_sprite = NULL;
 
 
@@ -254,13 +256,13 @@ void try_loading_cmd_line_driver(void)
         for (pos=0 ; pos < strlen(filename) ; pos++)
 	    if (filename[pos] == '.') filename[pos] = '\0';
        
-	sprintf(tstring, "expdriv\\%s.ini", filename);
+	sprintf(tstring, "expdriv/%s.ini", filename);
 
 	if (exists(tstring))
 	{
 	    try_loading_the_driver(tstring);
 	} else {
-	    sprintf(tstring, "drivers\\%s.ini", filename);
+	    sprintf(tstring, "drivers/%s.ini", filename);
 	    if (exists(tstring))
 	    {
 		try_loading_the_driver(tstring);
@@ -273,7 +275,7 @@ void try_loading_cmd_line_driver(void)
 		create_dir_list();
 		for (pos = 0 ; pos < ndirs ; pos++)
 		{
-		    sprintf(tstring, "DRIVERS\\%s\\%s.ini", dirlist[pos], filename);
+		    sprintf(tstring, "DRIVERS/%s/%s.ini", dirlist[pos], filename);
 		    if (exists(tstring))
 		    {
 			try_loading_the_driver(tstring);
@@ -539,9 +541,11 @@ DIALOG main_dialog[] =
    { button_dp2_proc,     260, 225,  15, 15,  GUI_FORE, GUI_BACK,  
    		0, D_EXIT,  0, 0, "v", sprite_pal_minus },
 
+#if 0 // GN: broken
     /// bitmap animation stuff
     { animview_proc, 320-6-84, 19, 80+2, 80+2, GUI_FORE, GUI_BACK, 
    		0, 0, -1, 0}, 
+#endif
     { button_dp2_proc,    320-6-84-15-1, 19+80+1-30,  
                           15, 15, GUI_FORE, GUI_BACK,  
    		          0, D_EXIT,  0, 0, "P", animate_change_playmode },

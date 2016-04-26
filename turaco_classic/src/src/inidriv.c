@@ -583,6 +583,7 @@ BOOL LoadDriver(char * INIFileName)
       if(GfxBanks)         free(GfxBanks);
       if(GfxBankExtraInfo) free(GfxBankExtraInfo);
       if(GfxRoms)          free(GfxRoms);
+      GfxBanks = NULL; GfxBankExtraInfo = NULL; GfxRoms = NULL; // GN:
       return retval;
    }
 
@@ -626,6 +627,7 @@ void FreeDriver(void)
       if(GfxBankExtraInfo) free(GfxBankExtraInfo);
       if(GfxRoms)          free(GfxRoms);
       if(GfxRomData)       free(GfxRomData);
+      GfxBanks = NULL; GfxBankExtraInfo = NULL; GfxRoms = NULL; GfxRomData = NULL; // GN:
 
       // free colour palettes
       for (i = 0; i < MAX_COL_PLANES; i ++)

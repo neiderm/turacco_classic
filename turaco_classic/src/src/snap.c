@@ -16,7 +16,7 @@
 #include <jpeg.h>
 #endif
 #include <dirent.h>	// for DIR
-#include <sys\stat.h>	// for mkdir
+//#include <sys\stat.h>	// for mkdir
 
 
 void snap(BITMAP *bmp, RGB * pal)
@@ -37,9 +37,9 @@ void snap(BITMAP *bmp, RGB * pal)
     while (!done && counter <= 9999)
     {
 #ifdef SNAP_JPEG
-	sprintf(filename, "%s\\%s%04d.jpg", SNAPDIR, SNAPBASE, counter);
+	sprintf(filename, "%s/%s%04d.jpg", SNAPDIR, SNAPBASE, counter);
 #else
-	sprintf(filename, "%s\\%s%04d.pcx", SNAPDIR, SNAPBASE, counter);
+	sprintf(filename, "%s/%s%04d.pcx", SNAPDIR, SNAPBASE, counter);
 #endif
 	fp = fopen(filename, "rb");
 	if (fp)
@@ -56,7 +56,10 @@ void snap(BITMAP *bmp, RGB * pal)
 #ifdef SNAP_JPEG
 	save_jpeg(filename, bmp, pal);
 #else
+done = // GN: returns -1
 	save_pcx(filename, bmp, pal);
+if (done != 0)
+  return;
 #endif
     }
 }
@@ -64,11 +67,15 @@ void snap(BITMAP *bmp, RGB * pal)
 void screen_snap(void)
 {
     BITMAP * bmp = create_bitmap(SCREEN_W, SCREEN_H);
+// GN: idfk
+PALETTE _current_pallete;
+get_pallete(_current_pallete);
     if (bmp == NULL) return;
 
     blit(screen, bmp, 0,0, 0,0, SCREEN_W, SCREEN_H);
-
+#if 1 // GN:      // GN: wtf src/snap.c|71|error: ‘_current_pallete’ undeclared 
     snap(bmp, _current_pallete);
+#endif
     destroy_bitmap(bmp);
 }
 

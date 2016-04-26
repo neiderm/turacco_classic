@@ -12,7 +12,7 @@
 #include "allegro.h"
 #include "general.h"
 #include "drivsel.h"
-#include "INIDriv.h"
+#include "inidriv.h"
 #include "sprtplte.h"
 #include "guipal.h"
 #include "gamedesc.h"
@@ -26,8 +26,13 @@ void unload_driver(void)
 {
     FreeDriver();
     InitialiseGameDesc();
+//    if (sprite_bank != NULL)
+//    {
+/* GN: no!!!! (this is a pointer to GfxBanks!)
     free(sprite_bank);
     sprite_bank = NULL; 
+*/
+//    }
 
     destroy_bitmap(current_sprite);
     current_sprite = create_bitmap(ED_DEF_SIZE,ED_DEF_SIZE);

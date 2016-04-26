@@ -126,10 +126,10 @@ void create_fst_list(int task)
     create_dir_list();
 
     fst_cdir = -1;
-    fst_total = for_each_file("drivers\\*.ini", 0, fst_callback, FST_COUNT);
+    fst_total = for_each_file("drivers/*.ini", 0, fst_callback, FST_COUNT);
     for (fst_cdir = 0 ; fst_cdir < ndirs ; fst_cdir++)
     {
-	sprintf(tdir, "drivers\\%s\\*.ini", dirlist[fst_cdir]);
+	sprintf(tdir, "drivers/%s/*.ini", dirlist[fst_cdir]);
 	fst_total += for_each_file(tdir, 0, fst_callback, FST_COUNT);
     }
 
@@ -140,10 +140,10 @@ void create_fst_list(int task)
     {
 	fst_count = 0;
 	fst_cdir = -1;
-	(void) for_each_file("drivers\\*.ini", 0, fst_callback, task);
+	(void) for_each_file("drivers/*.ini", 0, fst_callback, task);
 	for (fst_cdir = 0 ; fst_cdir < ndirs ; fst_cdir++)
 	{
-	    sprintf(tdir, "drivers\\%s\\*.ini", dirlist[fst_cdir]);
+	    sprintf(tdir, "drivers/%s/*.ini", dirlist[fst_cdir]);
 	    (void)for_each_file(tdir, 0, fst_callback, task);
 	}
 

@@ -13,7 +13,7 @@ char title_date[]   = "07 Oct 1999";
 #include <stdio.h>
 #include <string.h> // for strncpy
 #include <time.h>
-#include <conio.h>
+//#include <conio.h>
 
 #include "allegro.h"
 #include "font.h"
@@ -180,10 +180,10 @@ void setup_palette(void)
     set_color(MOUSE_COLOR_DARK,  &tcd);
     set_color(MOUSE_COLOR_MID,   &tcm);
     set_color(MOUSE_COLOR_LIGHT, &tcl);
-
+#if 0 // GN: black background ;(
     tc.r = 0;  tc.g = 0;  tc.b = 0;
     set_color(0, &tc);
-
+#endif
     tcl.r = 63; tcl.g = 63; tcl.b = 30;
     set_color(COLOR_HILITE, &tcl);
 
@@ -218,14 +218,16 @@ END_OF_FUNCTION(timer_handler);
 void Init_Subsystems(void)
 {
     original_font = font; 
+#ifdef FONTTHING // GN:
     font = &my_new_font; 
+#endif
     Init_INI();   
     Init_Palette();
     InitialiseGameDesc();
     Init_Cursors();
 
     // now some timer stuff...
-    i_love_bill = TRUE;
+//    i_love_bill = TRUE; // GN: don't know
     install_timer();
     install_int(&timer_handler, 100);
 
@@ -259,12 +261,12 @@ int setup_gfx_mode(void)
 	gfx_vres = 240;
     }
 
-    if (set_gfx_mode(GFX_AUTODETECT, gfx_hres, gfx_vres, 0, 0) < 0)
+   if (set_gfx_mode(GFX_AUTODETECT_WINDOWED, gfx_hres, gfx_vres, 0, 0) != 0)
     {
 	// ACK! it failed... fall back on 320x240 (known working on all systems)
 	gfx_hres = 320;
 	gfx_vres = 240;
-	if (set_gfx_mode(GFX_AUTODETECT, gfx_hres, gfx_vres, 0, 0) < 0)
+   if (set_gfx_mode(GFX_AUTODETECT_WINDOWED, gfx_hres, gfx_vres, 0, 0) != 0)
 	    return 1; // major VGA failure... can't do anything...
     }
     return 0;

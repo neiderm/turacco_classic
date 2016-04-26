@@ -11,7 +11,7 @@
 
 
 #include <stdio.h>
-#include <conio.h>
+//#include <conio.h>
 #include <string.h>
 #include <ctype.h>
 #include "allegro.h"
@@ -20,6 +20,7 @@
 #include "font.h"
 #include "config.h"
 
+#define getch     readkey // GN:
 
 #define CONFIG_FILE "turaco.ini"
 #define CONFIG_INFO "This file was created from within Turaco."
@@ -105,11 +106,14 @@ void Load_INI(void)
     strcpy(ROMPath, get_config_string("System", "ROMPath", DEFAULT_PATH));
 
     which_font = get_config_int("System", "Font", which_font);
+#ifdef FONTTHING // GN:
     if (which_font == 0)
 	font = original_font;
     else
 	font = &my_new_font;
-
+#else
+	font = original_font;
+#endif
 }
 
 void Save_INI(void)

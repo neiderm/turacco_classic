@@ -304,7 +304,7 @@ int palette_add_new(void)
 //------------------------------------------------------------------------------
 // palette editor functions:
 
-extern DIALOG palette_editor[];
+static /* extern */ DIALOG palette_editor[];
 void adjust_sliders(void);
 
 void refresh_palette_settings(void)

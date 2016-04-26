@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-#include <dir.h> // for file attributes.
+//#include <dir.h> // for file attributes.
 
 #include "allegro.h"
 #include "general.h"
@@ -224,8 +224,8 @@ char* fullname_getter(int index, int *list_size)
 void fds_dir_callback(char * fname, int attrib, int param)
 {
     if (attrib == FA_DIREC)
-	if (strcmp(fname, "drivers\\.")  && 
-	    strcmp(fname, "drivers\\..") )  // skip these
+	if (strcmp(fname, "drivers/.")  &&
+	    strcmp(fname, "drivers/..") )  // skip these
 	    {
 		ndirs++;
 		dirlist = realloc(dirlist, sizeof(char*)*ndirs );
@@ -254,13 +254,13 @@ void create_dir_list(void)
     if (dirlist) destroy_dir_list();
 
     if (drv_subdirs)
-	(void) for_each_file("drivers\\*.*", FA_DIREC, fds_dir_callback, 0);
+	(void) for_each_file("drivers/*.*", FA_DIREC, fds_dir_callback, 0);
 }
 
 
 
 int drv_sel_ok(DIALOG *d);
-extern DIALOG driver_selector[];
+/* extern */ static DIALOG driver_selector[];
 
 int d_my_list_proc(int msg, DIALOG *d, int c)
 {
@@ -284,16 +284,16 @@ int d_my_list_proc(int msg, DIALOG *d, int c)
 
 	// first count the experimental drivers
 	if (file_exists("expdriv", FA_DIREC, &aret)) 
-	    fds_total += for_each_file("expdriv\\*.ini", 0, fds_callback, 0);
+	    fds_total += for_each_file("expdriv/*.ini", 0, fds_callback, 0);
 
 	// then count the regular drivers
 	if (file_exists("drivers", FA_DIREC, &aret)) 
 	{
-	    fds_total += for_each_file("drivers\\*.ini", 0, fds_callback, 0);
+	    fds_total += for_each_file("drivers/*.ini", 0, fds_callback, 0);
 
 	    for (cdir = 0; cdir < ndirs ; cdir++)
 	    {
-		sprintf(tdir, "drivers\\%s\\*.ini", dirlist[cdir]);
+		sprintf(tdir, "drivers/%s/*.ini", dirlist[cdir]);
 		fds_total += for_each_file(tdir, 0, fds_callback, 0);
 	    }
 	}
@@ -313,15 +313,15 @@ int d_my_list_proc(int msg, DIALOG *d, int c)
 
 		// first scan the experimental drivers
 		if (file_exists("expdriv", FA_DIREC, &aret)) 
-		    (void) for_each_file("expdriv\\*.ini", 0, fds_callback, -2);
+		    (void) for_each_file("expdriv/*.ini", 0, fds_callback, -2);
 
 		// then scan the regular drivers
 		if (file_exists("drivers", FA_DIREC, &aret)) 
 		{
-		    (void) for_each_file("drivers\\*.ini", 0, fds_callback, -1);
+		    (void) for_each_file("drivers/*.ini", 0, fds_callback, -1);
 		    for (cdir = 0; cdir < ndirs ; cdir++)
 		    {
-			sprintf(tdir, "drivers\\%s\\*.ini", dirlist[cdir]);
+			sprintf(tdir, "drivers/%s/*.ini", dirlist[cdir]);
 			(void) for_each_file(tdir, 0, fds_callback, cdir+1);
 		    }
 		}

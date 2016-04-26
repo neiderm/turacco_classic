@@ -71,7 +71,7 @@ int edit_paste_sprite(void)
 char nsprites_wide[16];
 char final_resolution[64];
 int old = -1;
-extern DIALOG save_pcx_dialog[];
+static /*extern */ DIALOG save_pcx_dialog[];
 
 int nd_edit_proc(int msg, DIALOG *d, int c)
 {
@@ -150,6 +150,8 @@ int edit_save_pcx(void)
     int x,y;
     int sx,sy;
     int wide;
+PALETTE _current_pallete; // GN: editmenu.c|228|error: ‘_current_pallete’ undeclared 
+get_pallete(_current_pallete);
 
     if (!GameDriverLoaded)
     {
@@ -416,12 +418,18 @@ int resolution_callback(DIALOG * d, int ic)
     int sel = do_menu(resolution_popup, d->x+10, d->y+4);
 
     if (sel >= 0)
+#if 0 // GN: wy can't sprintf to  edit_prefs_dialog[DE_RESOLUTION].dp
 	strcpy(edit_prefs_dialog[8].dp, resolution_popup[sel].text);
-    
+#endif
     return(D_REDRAW);
 }
 ///// end resolution stuff
 
+// GN: tmp
+#define DE_USE_SUBDIRS (2)
+#define DE_NEW_FONT (3)
+#define DE_RESOLUTION (8)
+#define DE_TROLL_MAGIC (4)
 
 
 DIALOG edit_prefs_dialog[] =
@@ -435,15 +443,15 @@ DIALOG edit_prefs_dialog[] =
     { d_ctext_proc,      160,  7,    1,    1,    0,    0,    
                 0,    0,       0,    0,   "Turaco User Preferences"},
 
-#define DE_USE_SUBDIRS (2)
+//#define DE_USE_SUBDIRS (2)
     { d_check_proc,      6, 40, 290, 16, 0, 0, 
                 'd', 0, 0, 0, "Use &Driver Subdirectories" },
 
-#define DE_NEW_FONT (3)
+//#define DE_NEW_FONT (3)
     { d_check_proc,    6, 54, 290, 16, 0, 0, 
                 'n', 0, 0, 0, "Use &New Font" },
 
-#define DE_TROLL_MAGIC (4)
+//#define DE_TROLL_MAGIC (4)
     { d_check_proc,    6, 68, 290, 16, 0, 0, 
                 't', 0, 0, 0, "&Troll Magic" },
 
@@ -455,9 +463,9 @@ DIALOG edit_prefs_dialog[] =
     { d_text_proc,      10,  130,    1,    1,    0,    0,    
                 0, 0,   0,    0,   "Screen Resolution:"},
 
-#define DE_RESOLUTION (8)
+//#define DE_RESOLUTION (8)
     { button_dp2_proc,   10, 140, 100, 16, GUI_FORE, GUI_BACK,
-   		0, D_EXIT,  0, 0, "                           ",  
+   		0, D_EXIT,  0, 0, "1                        27",  
    		resolution_callback },
 
     { d_button_proc,   225,  203,  80,   16,   0,    0,    
@@ -478,7 +486,9 @@ int do_settings(int msg, DIALOG *d, int c)
 	      edit_prefs_dialog[DE_NEW_FONT].flags |= D_SELECTED;
 	else  edit_prefs_dialog[DE_NEW_FONT].flags &= ~D_SELECTED;
 
+#if 0 // GN: wy can't sprintt to  edit_prefs_dialog[DE_RESOLUTION].dp
 	sprintf(edit_prefs_dialog[DE_RESOLUTION].dp, "%dx%d", gfx_hres, gfx_vres);
+#endif
 	d->d1 = gfx_hres;
 	d->d2 = gfx_vres;
 
@@ -537,7 +547,7 @@ int edit_preferences(void)
 
     centre_dialog(edit_prefs_dialog);
     set_dialog_color(edit_prefs_dialog, GUI_FORE, GUI_BACK);
-    do_dialog(edit_prefs_dialog, 14);
+    do_dialog(edit_prefs_dialog, -1);
 
     if(bmp)
     {

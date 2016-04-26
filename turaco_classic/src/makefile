@@ -13,6 +13,7 @@
 #   LIBS = -lalleg
 
 LIBS = -lalleg 
+LIBS = `allegro-config --libs`  # GN: allegro-4.2.3
 
 # also if you're using degui, the following line should read:
 #  DEGUI = -DUSE_DEGUI
@@ -43,7 +44,7 @@ DRIVZIP = driv_113.zip
 #
 
 # first the flags that are the same for all configurations...
-SFLAGS = -m486 -s -Wall -Iinclude
+SFLAGS =  -s -Wall -Iinclude
 
 # now the specific ones... (uncomment your favorite)
 # 
@@ -142,13 +143,13 @@ distrib: turaco.exe
 
 # clean target
 clean:
-	if exist gui\*.o del gui\*.o
-	if exist src\*.o del src\*.o
-	if exist maped\*.o del maped\*.o
-	if exist *.pcx del *.pcx
-	if exist turaco.exe del turaco.exe
-	if exist $(DISTZIP) rm $(DISTZIP)
-	if exist $(DRIVZIP) rm $(DRIVZIP)
+	rm -f gui/*.o # if exist gui\*.o del gui\*.o
+	rm -f src/*.o # if exist src\*.o del src\*.o
+	rm -f maped/*.o # if exist maped\*.o del maped\*.o
+	rm -f *.pcx # if exist *.pcx del *.pcx
+	rm -f turaco.exe # if exist turaco.exe del turaco.exe
+	# if exist $(DISTZIP) rm $(DISTZIP)
+	# if exist $(DRIVZIP) rm $(DRIVZIP)
 	rm -rf snapshot
 
 # if you don't have the unix-style commands: rm, mv, cp, you need to 

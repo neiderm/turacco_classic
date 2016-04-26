@@ -44,9 +44,9 @@ void display_text_file(char * title, char * filename, int startpos)
     {
 	if (text_file_buffer)
 	    free(text_file_buffer);
-
+#if 0 // GN: hmm?
 	sprintf(text_file_dialog[1].dp, title);
-
+#endif
 	text_file_buffer = (char *) malloc (file_size(filename));
 	if (text_file_buffer)
 	{
@@ -85,8 +85,8 @@ void display_text_file(char * title, char * filename, int startpos)
 int help_general(void)
 {
     // let it work if the text files are in the TXT\ directory
-    if (exists("TXT\\README.TXT"))
-	display_text_file("Readme Text File", "TXT\\README.TXT", 0);
+    if (exists("txt/readme.txt"))
+	display_text_file("Readme Text File", "txt/readme.txt", 0);
     else
 	display_text_file("Readme Text File", "README.TXT", 0);
 
@@ -96,8 +96,8 @@ int help_general(void)
 
 int help_new(void)
 {
-    if (exists("TXT\\WHATSNEW.TXT"))
-	display_text_file("What's New Text File", "TXT\\WHATSNEW.TXT", 0);
+    if (exists("txt/whatsnew.txt"))
+	display_text_file("What's New Text File", "txt/whatsnew.txt", 0);
     else
 	display_text_file("What's New Text File", "WHATSNEW.TXT", 0);
 
